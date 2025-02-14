@@ -1,7 +1,7 @@
 <template>
 	<div class="tasks">
 		<Task 
-			v-for="(el, i) in tasks"
+			v-for=" (el, i) in tasks"
 			:key="i"
 			:value="el"
 			:isEditing="editingTaskIndex === i"
@@ -16,36 +16,49 @@
 
 <script>
 import Task from './Task.vue';
+import {mapActions} from 'vuex';
 
 export default{
 	components: { Task },
-	props: {
-		tasks: {
-			type: Array,
-			required: true
-		},
-	},
+	// props: {
+	// 	tasks: {
+	// 		type: Array,
+	// 		required: true
+	// 	},
+	// },
 	data() {
-        return {
+		return {
 			editingTaskIndex: null
         }
     },
-	emit: ['deleteTask', 'chooseTask', 'onChangeName'],
+	computed: {
+		tasks () {
+			return this.$store.state.tasks
+		}
+	},
 	methods:{
-		deleteTask(index){
-			this.$emit('deleteTask', index)
-		},
-		chooseTask(index){
-			this.$emit('chooseTask', index)
-		},
+		// deleteTask(index){
+		// 	this.$emit('deleteTask', index)
+		// },
+		// chooseTask(index){
+		// 	this.$emit('chooseTask', index)
+		// },
 		showInput(index) {
             this.editingTaskIndex = index
 		},
-		onChangeName(index, value){
-			this.$emit('onChangeName', index, value)
+		// onChangeName(index, value){
+		// 	this.$emit('onChangeName', index, value)
+		// 	this.editingTaskIndex = null
+        // },
+		onChangeName(index, value) {
+            this.$store.dispatch('onChangeName', { name: value, position: index}),
 			this.editingTaskIndex = null
-        },
-	}
+		},
+		...mapActions([
+            'deleteTask',
+			'chooseTask',
+        ])
+	},
 }
 </script>
 
