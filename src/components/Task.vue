@@ -59,7 +59,6 @@ export default{
 			this.$emit('chooseTask')
 		},
         pressEnter(){
-            console.log(this.newValue);
             this.$emit('pressEnter', this.newValue)
         },
         showInput() {

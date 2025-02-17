@@ -6,6 +6,7 @@
         </div>
         <Input />
         <Tasks />
+        <p>{{ tasks }}</p>
     </div>
 </template>
 
@@ -22,7 +23,24 @@ export default {
         },
         counter(){
             return this.$store.getters.countString
+        },
+        taskssss(){
+            return this.$store.state.tasks
         }
+    },
+    watch: {
+        taskssss:{
+            handler(newVal){
+                localStorage.setItem('tasks', JSON.stringify(newVal))
+                console.log(this.taskssss);
+            },
+            deep: true
+        }, 
+    },
+    mounted(){
+        const raw = localStorage.getItem('tasks')
+        const localTasks = JSON.parse(raw)
+        this.$store.dispatch('addTasks', localTasks)
     },
 }
 </script>
