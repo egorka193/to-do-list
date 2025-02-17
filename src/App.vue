@@ -6,7 +6,6 @@
         </div>
         <Input />
         <Tasks />
-        <p>{{ tasks }}</p>
     </div>
 </template>
 

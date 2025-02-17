@@ -17,9 +17,7 @@ export const store = createStore({
     },
     mutations: {
         addTasks(state, payload){
-            payload.forEach(element => {
-                state.tasks.push(element)
-            });
+            state.tasks = [...state.tasks, ...payload]
         },
         addTask(state, payload){
             if(payload !== ''){
@@ -66,5 +64,4 @@ export const store = createStore({
             context.commit('addTasks', payload);
         },
     }
-    }
-)
+})
