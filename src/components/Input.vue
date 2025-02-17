@@ -16,16 +16,16 @@
 
 
 <script>
+
 export default{
-    emit: ['addTask'],
     data() {
         return {
             task: '',
         }
     },
     methods: {
-        addTask(){
-            this.$emit('addTask', this.task)
+        addTask() {
+            this.$store.dispatch('addTask', this.task)
             this.task = ''
         }
     }

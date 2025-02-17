@@ -1,58 +1,55 @@
 <template>
-	<div class="tasks">
-		<Task 
-			v-for="(el, i) in tasks"
-			:key="i"
-			:value="el"
-			:isEditing="editingTaskIndex === i"
-			@deleteTask="deleteTask(i)"
-			@chooseTask="chooseTask(i)"
-			@showInput="showInput(i)"
-			@pressEnter="(name) => onChangeName(i, name)"
-		/>
-	</div>
+    <div class="tasks">
+        <Task 
+            v-for="(el, i) in tasks"
+            :key="i"
+            :value="el"
+            :isEditing="editingTaskIndex === i"
+            @deleteTask="deleteTask(i)"
+            @chooseTask="chooseTask(i)"
+            @showInput="showInput(i)"
+            @pressEnter="(name) => onChangeName(i, name)"
+        />
+    </div>
 </template>
 
 
 <script>
 import Task from './Task.vue';
+import {mapActions} from 'vuex';
 
 export default{
-	components: { Task },
-	props: {
-		tasks: {
-			type: Array,
-			required: true
-		},
-	},
-	data() {
+    components: { Task },
+    data() { 
         return {
-			editingTaskIndex: null
+            editingTaskIndex: null
         }
     },
-	emit: ['deleteTask', 'chooseTask', 'onChangeName'],
-	methods:{
-		deleteTask(index){
-			this.$emit('deleteTask', index)
-		},
-		chooseTask(index){
-			this.$emit('chooseTask', index)
-		},
-		showInput(index) {
+    computed: {
+        tasks () {
+            return this.$store.state.tasks
+        }
+    },
+    methods:{
+        ...mapActions([
+            'deleteTask',
+            'chooseTask',
+        ]),
+        showInput(index) {
             this.editingTaskIndex = index
-		},
-		onChangeName(index, value){
-			this.$emit('onChangeName', index, value)
-			this.editingTaskIndex = null
         },
-	}
+        onChangeName(index, value) {
+            this.$store.dispatch('onChangeName', { name: value, position: index}),
+            this.editingTaskIndex = null
+        },
+    },
 }
 </script>
 
 
 <style scoped>
 .tasks{
-	color: black;
-	padding: 10px;
+    color: black;
+    padding: 10px;
 }
 </style>
