@@ -31,7 +31,7 @@ export const store = createStore({
             }
         },
         deleteTask(state, payload){ 
-            let newArr =  state.tasks.filter((item) => item !== state.tasks[payload])
+            const newArr = state.tasks.filter((item) => item !== state.tasks[payload])
             state.tasks = newArr
         },
         chooseTask(state, payload){
