@@ -17,12 +17,25 @@ import Tasks from './components/Tasks.vue';
 export default {
     components: { Input, Tasks,},
     computed: {
-        tasksDone(){
-            return this.$store.getters.tasksDoneCount
-        },
         counter(){
             return this.$store.getters.countString
+        },
+        tasks(){
+            return this.$store.state.tasks
         }
+    },
+    watch: {
+        tasks:{
+            handler(newVal){
+                localStorage.setItem('tasks', JSON.stringify(newVal))
+            },
+            deep: true
+        }, 
+    },
+    mounted(){
+        const raw = localStorage.getItem('tasks')
+        const localTasks = JSON.parse(raw)
+        this.$store.dispatch('addTasks', localTasks)
     },
 }
 </script>

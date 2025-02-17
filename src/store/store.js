@@ -16,6 +16,9 @@ export const store = createStore({
         },
     },
     mutations: {
+        addTasks(state, payload){
+            state.tasks = [...state.tasks, ...payload]
+        },
         addTask(state, payload){
             if(payload !== ''){
                 let obj = {
@@ -57,6 +60,8 @@ export const store = createStore({
         onChangeName(context, payload){
             context.commit('onChangeName', payload);
         },
+        addTasks(context, payload){
+            context.commit('addTasks', payload);
+        },
     }
-    }
-)
+})
