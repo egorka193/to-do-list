@@ -24,15 +24,14 @@ export default {
         counter(){
             return this.$store.getters.countString
         },
-        taskssss(){
+        tasks(){
             return this.$store.state.tasks
         }
     },
     watch: {
-        taskssss:{
+        tasks:{
             handler(newVal){
                 localStorage.setItem('tasks', JSON.stringify(newVal))
-                console.log(this.taskssss);
             },
             deep: true
         }, 
