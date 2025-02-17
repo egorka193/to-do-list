@@ -1,7 +1,7 @@
 <template>
 	<div class="tasks">
 		<Task 
-			v-for=" (el, i) in tasks"
+			v-for="(el, i) in tasks"
 			:key="i"
 			:value="el"
 			:isEditing="editingTaskIndex === i"
@@ -20,16 +20,10 @@ import {mapActions} from 'vuex';
 
 export default{
 	components: { Task },
-	// props: {
-	// 	tasks: {
-	// 		type: Array,
-	// 		required: true
-	// 	},
-	// },
 	data() {
 		return {
 			editingTaskIndex: null
-        }
+		}
     },
 	computed: {
 		tasks () {
@@ -37,27 +31,17 @@ export default{
 		}
 	},
 	methods:{
-		// deleteTask(index){
-		// 	this.$emit('deleteTask', index)
-		// },
-		// chooseTask(index){
-		// 	this.$emit('chooseTask', index)
-		// },
+		...mapActions([
+			'deleteTask',
+			'chooseTask',
+		]),
 		showInput(index) {
             this.editingTaskIndex = index
 		},
-		// onChangeName(index, value){
-		// 	this.$emit('onChangeName', index, value)
-		// 	this.editingTaskIndex = null
-        // },
 		onChangeName(index, value) {
             this.$store.dispatch('onChangeName', { name: value, position: index}),
 			this.editingTaskIndex = null
 		},
-		...mapActions([
-            'deleteTask',
-			'chooseTask',
-        ])
 	},
 }
 </script>

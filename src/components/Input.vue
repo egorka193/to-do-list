@@ -7,7 +7,7 @@
         >
         <button
             class="btn"
-            @click="addTask(task)"
+            @click="addTask"
         >
             Add
         </button>
@@ -16,8 +16,6 @@
 
 
 <script>
-import {mapActions} from 'vuex';
-import {mapGetters} from 'vuex';
 
 export default{
     data() {
@@ -26,10 +24,10 @@ export default{
         }
     },
     methods: {
-        addTask(task) {
-            this.$store.dispatch('addTask', task),
+        addTask() {
+            this.$store.dispatch('addTask', this.task),
 			this.task = ''
-		},
+		}
     }
 }
 </script>

@@ -25,16 +25,17 @@ export const store = createStore({
                 state.tasks.push(obj)
             }
         },
-        deleteTask(state, payload){  
-            state.tasks.splice(payload, 1)
+        deleteTask(state, payload){ 
+            let newArr =  state.tasks.filter((item) => item !== state.tasks[payload])
+            state.tasks = newArr
         },
         chooseTask(state, payload){
             state.tasks = state.tasks.map((item, i) => {
                 if (payload === i) {
-                return {
-                    ...item,
-                    checked: !state.tasks[payload].checked,
-                }
+                    return {
+                        ...item,
+                        checked: !state.tasks[payload].checked,
+                    }
                 }
                 return item
             })
@@ -46,7 +47,6 @@ export const store = createStore({
     actions: {
         addTask(context, payload) { 
             context.commit('addTask', payload);
-            payload = ''
         },
         deleteTask(context, payload){
             context.commit('deleteTask', payload);
@@ -55,8 +55,6 @@ export const store = createStore({
             context.commit('chooseTask', payload);
         },
         onChangeName(context, payload){
-            console.log(payload);
-            
             context.commit('onChangeName', payload);
         },
     }
