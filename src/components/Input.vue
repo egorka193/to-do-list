@@ -25,9 +25,9 @@ export default{
     },
     methods: {
         addTask() {
-            this.$store.dispatch('addTask', this.task),
-			this.task = ''
-		}
+            this.$store.dispatch('addTask', this.task)
+            this.task = ''
+        }
     }
 }
 </script>
