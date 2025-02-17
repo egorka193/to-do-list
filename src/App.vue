@@ -17,9 +17,6 @@ import Tasks from './components/Tasks.vue';
 export default {
     components: { Input, Tasks,},
     computed: {
-        tasksDone(){
-            return this.$store.getters.tasksDoneCount
-        },
         counter(){
             return this.$store.getters.countString
         },
