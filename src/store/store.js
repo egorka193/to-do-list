@@ -1,6 +1,6 @@
-import { createStore } from "vuex";
+import { createStore } from 'vuex';
 
-export const store = createStore({
+export default createStore({
   state() {
     return {
       tasks: [],
@@ -19,8 +19,8 @@ export const store = createStore({
       state.tasks = [...state.tasks, ...payload];
     },
     addTask(state, payload) {
-      if (payload !== "") {
-        let obj = {
+      if (payload !== '') {
+        const obj = {
           name: payload,
           checked: false,
         };
@@ -29,7 +29,7 @@ export const store = createStore({
     },
     deleteTask(state, payload) {
       const newArr = state.tasks.filter(
-        (item) => item !== state.tasks[payload]
+        (item) => item !== state.tasks[payload],
       );
       state.tasks = newArr;
     },
@@ -50,19 +50,19 @@ export const store = createStore({
   },
   actions: {
     addTask(context, payload) {
-      context.commit("addTask", payload);
+      context.commit('addTask', payload);
     },
     deleteTask(context, payload) {
-      context.commit("deleteTask", payload);
+      context.commit('deleteTask', payload);
     },
     chooseTask(context, payload) {
-      context.commit("chooseTask", payload);
+      context.commit('chooseTask', payload);
     },
     onChangeName(context, payload) {
-      context.commit("onChangeName", payload);
+      context.commit('onChangeName', payload);
     },
     addTasks(context, payload) {
-      context.commit("addTasks", payload);
+      context.commit('addTasks', payload);
     },
   },
 });

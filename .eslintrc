@@ -4,13 +4,7 @@
     "browser": true
   },
   "rules": {
-    "no-unused-vars": "error",
-    "no-lone-blocks": "error",
-    "no-redeclare": "error",
-    "no-regex-spaces": "error",
-    "no-shadow": "error",
-    "block-scoped-var": "error",
-    "camelcase": "error",
-    "no-dupe-args": "error"
+    "no-dupe-args": "error",
+    "no-param-reassign":"off"
   }
 }
