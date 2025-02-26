@@ -4,13 +4,11 @@
   </div>
 </template>
 
-
 <script setup>
 
 </script>
 
-
-<style >
+<style>
 .list{
   position: relative;
   min-width: 900px;

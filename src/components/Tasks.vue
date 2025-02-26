@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import Task from "./Task.vue";
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex';
+import Task from './Task.vue';
 
 export default {
   components: { Task },
@@ -30,13 +30,14 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["deleteTask", "chooseTask"]),
+    ...mapActions(['deleteTask', 'chooseTask']),
     showInput(index) {
       this.editingTaskIndex = index;
     },
     onChangeName(index, value) {
-      this.$store.dispatch("onChangeName", { name: value, position: index }),
-        (this.editingTaskIndex = null);
+      // eslint-disable-next-line no-unused-expressions
+      this.$store.dispatch('onChangeName', { name: value, position: index });
+      this.editingTaskIndex = null;
     },
   },
 };

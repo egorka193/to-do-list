@@ -1,14 +1,17 @@
 <template>
   <div class="task">
-    <Checkbox :checked="value.checked" @chooseTask="chooseTask" />
+    <Checkbox
+      :checked="value.checked"
+      @chooseTask="chooseTask"
+    />
     <input
       v-if="isEditing"
       ref="input"
+      v-model="newValue"
       class="task__input"
       type="text"
-      v-model="newValue"
       @keydown.enter="pressEnter"
-    />
+    >
     <p
       v-else
       class="task__name"
@@ -17,12 +20,17 @@
     >
       {{ value.name }}
     </p>
-    <div class="cross" @click="deleteTask">&#10006;</div>
+    <div
+      class="cross"
+      @click="deleteTask"
+    >
+      &#10006;
+    </div>
   </div>
 </template>
 
 <script>
-import Checkbox from "./Checkbox.vue";
+import Checkbox from './Checkbox.vue';
 
 export default {
   components: { Checkbox },
@@ -36,25 +44,25 @@ export default {
       required: true,
     },
   },
+  emits: ['deleteTask', 'chooseTask', 'showInput', 'pressEnter'],
   data() {
     return {
-      newValue: "",
+      newValue: '',
     };
   },
-  emit: ["deleteTask", "chooseTask", "showInput", "pressEnter"],
   methods: {
     deleteTask() {
-      this.$emit("deleteTask");
+      this.$emit('deleteTask');
     },
     chooseTask() {
-      this.$emit("chooseTask");
+      this.$emit('chooseTask');
     },
     pressEnter() {
-      this.$emit("pressEnter", this.newValue);
+      this.$emit('pressEnter', this.newValue);
     },
     showInput() {
       this.newValue = this.value.name;
-      this.$emit("showInput");
+      this.$emit('showInput');
       this.$nextTick(() => {
         const input = this.$refs.input;
         if (input) {

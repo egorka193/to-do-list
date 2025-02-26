@@ -1,7 +1,16 @@
 <template>
   <div class="input__wrapper">
-    <input type="text" placeholder="add your task" v-model="task" />
-    <button class="btn" @click="addTask">Add</button>
+    <input
+      v-model="task"
+      type="text"
+      placeholder="add your task"
+    >
+    <button
+      class="btn"
+      @click="addTask"
+    >
+      Add
+    </button>
   </div>
 </template>
 
@@ -9,13 +18,13 @@
 export default {
   data() {
     return {
-      task: "",
+      task: '',
     };
   },
   methods: {
     addTask() {
-      this.$store.dispatch("addTask", this.task);
-      this.task = "";
+      this.$store.dispatch('addTask', this.task);
+      this.task = '';
     },
   },
 };

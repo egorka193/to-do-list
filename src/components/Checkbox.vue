@@ -5,7 +5,7 @@
       type="checkbox"
       :checked="checked"
       @change="chooseTask"
-    />
+    >
   </div>
 </template>
 
@@ -17,9 +17,10 @@ export default {
       required: true,
     },
   },
+  emits: ['chooseTask'],
   methods: {
     chooseTask() {
-      this.$emit("chooseTask");
+      this.$emit('chooseTask');
     },
   },
 };
